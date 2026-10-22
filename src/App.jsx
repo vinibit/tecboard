@@ -1,4 +1,6 @@
 import './App.css'
+
+import { useState } from 'react'
 import { Banner } from './components/Banner'
 import { Theme } from './components/Theme'
 import { EventForm } from './components/EventForm'
@@ -18,20 +20,28 @@ function App() {
 		{ id: 6, name: 'cloud' }
 	]
 
-	const events = [
+	const [events, setEvents] = useState([
 		{
-			id: 1,			
+			id: 1,
+			cover: "1",			
 			theme: themes[0],
 			date: new Date(),
 			title: 'Mulheres no Front'
 		},
 		{
 			id: 2,
-			theme: themes[0],
+			cover: "2",
+			theme: themes[1],
 			date: new Date(),
-			title: 'Mulheres no Front'
+			title: 'Summer Dev Hits'
 		}
-	]
+	]);	
+
+	function addEvent(event) {
+		
+		setEvents(prevEvents => [...prevEvents, event]);
+		console.log("Eventos => ", events);
+	}
 
 	return (
 		<main>
@@ -39,19 +49,35 @@ function App() {
 				<img src="logo.png" alt="Logo" />
 			</header>
 			<Banner />
-			<EventForm />
+			<EventForm 
+				themes={themes} 
+				onSubmit={addEvent} 
+			/>
+			<section className="container">
 			{
-				themes.map(function (theme) {
+				themes.map(theme => {
+
+					if (!events.some(event => event.theme.id === theme.id)) {
+						return null
+					}
+
 					return (
 						<section key={theme.id}>
 							<Theme theme={theme} />
-							<EventCard event={events[1]} />
-						</section>
+							<div className="events">
+								{events
+									.filter(event => event.theme.id === theme.id)
+									.map((event, index) => (
+										<EventCard key={index} event={event} />
+								))}
+							</div>
+						</section>				
 					)
 				})
 			}
+			</section>
 		</main>
 	)
 }
 
-export default App
+export default App;

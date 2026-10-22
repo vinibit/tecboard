@@ -9,3 +9,15 @@ header {
     display: flex;
     justify-content: center;
 }
+
+.container {
+    width: 1000px;
+    max-width: 90%;
+    margin: 0 auto;    
+}
+
+.events {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 24px;
+}
