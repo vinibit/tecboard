@@ -6,7 +6,7 @@ import { Theme } from './components/Theme'
 import { EventForm } from './components/EventForm'
 import { EventCard } from './components/EventCard'
 
-// No Raact, componentes são funções que retornam elementos JSX, que são uma extensão de JavaScript que permite escrever HTML dentro do JavaScript. 
+// No React, componentes são funções que retornam elementos JSX, que são uma extensão de JavaScript que permite escrever HTML dentro do JavaScript. 
 // O JSX é transformado em chamadas de função JavaScript que criam os elementos React.
 
 function App() {
